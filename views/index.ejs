@@ -1,0 +1,159 @@
+<%- include('./partials/head') %>
+
+<main>
+  <header>
+    deze tekst mag niet afleiden
+  </header>
+  <div class="summary-wrapper">
+    <div class="team1 teams">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Android_O_Preview_Logo.png">
+      <h2><%= data1.team1Name %></h2></div>
+    <div class="score">
+      <span><%= data2.team1Score %></span>-<span><%= data2.team2Score %></span>
+    </div>
+    <div class="team2 teams">
+      <img src="https://preview.redd.it/x4fvj9wh9dy71.png?width=702&format=png&auto=webp&s=e5040778e3ac0098f6a180475d3a693a40b92d1a" alt="">
+      <h2><%= data1.team2Name %></h2></div>
+  </div>
+
+  <div class="main-wrapper">
+    <div class="left-player-wrapper main-wrapper-items">
+      <% data1.team1Players.forEach(player => { %> <%# Player card %>
+      <article id="<%= player.playerId %>" class="player-line">
+        <div class="player-info">
+          <h4>
+            <span class="jersey-number"><%= player.jerseyNumber %></span> <%=
+            player.name %>
+          </h4>
+          <div class="dots">
+            <div class="dot green-dot"></div>
+            <div class="dot blue-dot"></div>
+            <div class="dot red-dot"></div>
+            <div class="dot yellow-dot"></div>
+          </div>
+        </div>
+      </article>
+      <% }) %>
+    </div>
+    <div class="event-wrapper">
+      <div class="event-nav">
+        <div class="points-nav enav">
+          <h5>POINTS</h5>
+        </div>
+        <div class="stats-nav enav">
+          <h5>STATS</h5>
+        </div>
+        <div class="config-nav enav">
+          <h5>CONFIG</h5>
+        </div>
+      </div>
+      <div class="events">
+        <table cellspacing="10" cellpadding="0">
+          <thead>
+            <tr>
+              <td>pass</td>
+              <td>turn</td>
+              <td>O/D</td>
+              <td>Score</td>
+              <td>O/D</td>
+              <td>turn</td>
+              <td>pass</td>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% data2.scoredPoints.forEach(point => { %> <% if (point.scored ===
+            point.team1Name) { %> <% if (point.team1OorD === "O") { %>
+            <tr class="score-info">
+              <td><%= point.team1Passes %></td>
+              <td><%= point.team1Turnovers %></td>
+              <td><%= point.team1OorD %></td>
+              <td><%= point.team1Score %> - <%= point.team2Score %></td>
+              <td><%= point.team2OorD %></td>
+              <td><%= point.team2Turnovers %></td>
+              <td><%= point.team2Passes %></td>
+            </tr>
+            <% } else {%>
+            <tr class="score-info-team-1 green">
+              <td><%= point.team1Passes %></td>
+              <td><%= point.team1Turnovers %></td>
+              <td><%= point.team1OorD %></td>
+              <td><%= point.team1Score %> - <%= point.team2Score %></td>
+              <td><%= point.team2OorD %></td>
+              <td><%= point.team2Turnovers %></td>
+              <td><%= point.team2Passes %></td>
+            </tr>
+            <% } %> <% } else { %> <% if (point.team1OorD === "D") { %>
+            <tr class="score-info-team-1 dark-red">
+              <td><%= point.team1Passes %></td>
+              <td><%= point.team1Turnovers %></td>
+              <td><%= point.team1OorD %></td>
+              <td><%= point.team1Score %> - <%= point.team2Score %></td>
+              <td><%= point.team2OorD %></td>
+              <td><%= point.team2Turnovers %></td>
+              <td><%= point.team2Passes %></td>
+            </tr>
+            <% } else {%>
+            <tr class="score-info-team-1 red">
+              <td><%= point.team1Passes %></td>
+              <td><%= point.team1Turnovers %></td>
+              <td><%= point.team1OorD %></td>
+              <td><%= point.team1Score %> - <%= point.team2Score %></td>
+              <td><%= point.team2OorD %></td>
+              <td><%= point.team2Turnovers %></td>
+              <td><%= point.team2Passes %></td>
+            </tr>
+            <tr class="score-info-team-1 red">
+              <td><%= point.team1Passes %></td>
+              <td><%= point.team1Turnovers %></td>
+              <td><%= point.team1OorD %></td>
+              <td><%= point.team1Score %> - <%= point.team2Score %></td>
+              <td><%= point.team2OorD %></td>
+              <td><%= point.team2Turnovers %></td>
+              <td><%= point.team2Passes %></td>
+            </tr>
+            <tr class="score-info-team-1 red">
+              <td><%= point.team1Passes %></td>
+              <td><%= point.team1Turnovers %></td>
+              <td><%= point.team1OorD %></td>
+              <td><%= point.team1Score %> - <%= point.team2Score %></td>
+              <td><%= point.team2OorD %></td>
+              <td><%= point.team2Turnovers %></td>
+              <td><%= point.team2Passes %></td>
+            </tr>
+            <tr class="score-info-team-1 red">
+              <td><%= point.team1Passes %></td>
+              <td><%= point.team1Turnovers %></td>
+              <td><%= point.team1OorD %></td>
+              <td><%= point.team1Score %> - <%= point.team2Score %></td>
+              <td><%= point.team2OorD %></td>
+              <td><%= point.team2Turnovers %></td>
+              <td><%= point.team2Passes %></td>
+            </tr>
+            <% } %> <% } %> <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="right-player-wrapper main-wrapper-items">
+      <% data1.team2Players.forEach(player => { %> <%# Player card %>
+      <article id="<%= player.playerId %>" class="player-line">
+        <div class="player-info">
+          <h4>
+            <span class="jersey-number"><%= player.jerseyNumber %></span> <%=
+            player.name %>
+          </h4>
+          <div class="dots">
+            <div class="dot green-dot"></div>
+            <div class="dot blue-dot"></div>
+            <div class="dot red-dot"></div>
+            <div class="dot yellow-dot"></div>
+          </div>
+        </div>
+      </article>
+      <% }) %>
+    </div>
+  </div>
+</main>
+
+<%- include('./partials/foot') %>
